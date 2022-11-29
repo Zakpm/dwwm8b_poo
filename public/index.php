@@ -1,12 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-</body>
-</html>
+<?php
+
+
+
+    /**
+     * ----------------------------------------------------
+     * Le controleur frontal
+     * 
+     * Ses rôles : 
+     *      - Réaliser le "bootsrapping" de l'application
+     *          - Chargement de l'autoloader de composer
+     *          - Chargement des constantes
+     *          - Chargement des variables d'environnement
+     *          - Chargement du conteneur de dépendances
+     * 
+     *      - Créer une nouvelle instance du noyau (kernel)
+     *          - En lui passant le conteneur en paramètres
+     *      - Demander au noyau de soumettre la requête du client au système
+     *      - Récupérer la réponse correspondante
+     *      - Envoyer cette réponse au client 
+     * ----------------------------------------------------
+     */
+
+    //  Boostrapping de l'application 
+    require __DIR__ . "/../config/bootstrap.php";
+
+    
+     dd($_ENV); die();
