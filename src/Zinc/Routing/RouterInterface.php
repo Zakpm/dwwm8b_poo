@@ -1,9 +1,9 @@
 <?php
-namespace App\Routing;
+namespace App\Zinc\Routing;
 
-class Router implements RouterInterface {
+    interface RouterInterface {
 
-      /**
+        /**
          * Cette méthode permet de :
          *      - récupérer les contrôleurs,
          *      - En extraire les routes
@@ -13,9 +13,7 @@ class Router implements RouterInterface {
          * 
          * @return void
          */
-        public function addRoutes(array $controllers) : void {
-
-        }
+        public function addRoutes(array $controllers) : void;
 
         /**
          * Cette méthode du routeur lui permet : 
@@ -28,10 +26,6 @@ class Router implements RouterInterface {
          *
          * @return array|null
          */
-        public function run() : ?array {
+        public function run() : ?array;
 
-            dd("hello");
-        }
-
-
-}
+    }
