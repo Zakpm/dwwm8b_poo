@@ -36,8 +36,9 @@ class HttpKernel implements HttpKernelInterface {
             $router = $this->container->get(RouterInterface::class);
             $router_response = $router->run();
             
-            $this->getControllerResponse($router_response);
-            
+            $response = $this->getControllerResponse($router_response);
+
+            return $response;
         }
 
         /**
@@ -51,13 +52,30 @@ class HttpKernel implements HttpKernelInterface {
          */
         private function getControllerResponse(array|null $router_response) : Response {
 
+            // Si la pagge recherchée n'est pas trouvée
             if ($router_response === null ){
 
-                // pause
+                $controller = $this->container->get('controllers')['ErrorController'];
+
+                $response = $this->container->call([$controller, 'notFound']);
+
+                return $response;
 
             }
 
+            //dans le cas contraire,
+
+            
+
+            // Récupérer le nom du contrôleur ainsi que sa méthode censé gérer l'évènement 
+            $controller = $router_response['route']['class'];
+            $method     = $router_response['route']['method'];
+            if (isset($router_response['parameters']) && !empty($router_response['parameters'])) {
+                
+                $parameters = $router_response['parameters'];
+                return $this->container->call([$controller, $method], [$parameters]);
+            }
+
+            return $this->container->call([$controller, $method]);
         }
-    
-    
 }

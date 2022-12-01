@@ -63,7 +63,7 @@ class Router implements RouterInterface {
                         
                         $this->routes[$route->getName()] = [
                             'class' => $reflectionMethod->class,
-                            'methode' => $reflectionMethod->name,
+                            'method' => $reflectionMethod->name,
                             'route' => $route
                         ];
                    }
@@ -91,16 +91,16 @@ class Router implements RouterInterface {
 
                     if ( isset($this->parameters) && !empty($this->parameters))
                     {
-                    return [
-                        "route" => $route,
-                        "parameters" => $this->parameters
-                    ];
-                }
+                        return [
+                            "route" => $route,
+                            "parameters" => $this->parameters
+                        ];
+                    }
                 
-              }
-                return [
-                        "route" => $route,
-                    ];
+                    return [
+                            "route" => $route
+                        ];
+                }
             }
             return null;
         }
